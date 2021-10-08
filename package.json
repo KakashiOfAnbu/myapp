@@ -25,7 +25,8 @@
   "homepage": "https://github.com/KakashiOfAnbu/myapp#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.3"
+    "express-handlebars": "^5.3.3",
+    "mongoose": "^6.0.10"
   },
   "devDependencies": {
     "husky": "^4.2.5",

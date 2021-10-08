@@ -1,17 +1,20 @@
-@import "variables";
-
+@import 'variables';
+@import 'musicPlayer';
 .test {
-  font-size: 1rem;
-  background-color: #fff;
-  width: 50px;
-  height: 50px;
-  border-radius: 100rem;
+    font-size: 1rem;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 100rem;
 }
 body {
-  background-image: $main-background-image;
-  background-repeat: no-repeat;
-  height: 1000px;
+    background-image: $main-background-image;
+    background-repeat: no-repeat;
 }
 * {
-  color: $main-color;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+    color: $main-color;
 }
