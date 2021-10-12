@@ -14,6 +14,7 @@ const songDuration = $('.song-duration');
 const shuffleBtn = $('.button__shuffle');
 const repeatBtn = $('.button__repeat');
 const togglePlay = $('.button__play-pause');
+
 var count = 0;
 var arrayTemp = [];
 const app = {

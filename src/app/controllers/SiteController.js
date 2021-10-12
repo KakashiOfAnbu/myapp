@@ -1,6 +1,8 @@
+const Song = require('../models/Song.js');
+const { multipleMongooseToObj } = require('../../utils/mongoose');
 class SiteController {
     // [GET] /home
-    home(req, res) {
+    home(req, res, next) {
         res.render('home');
     }
 
@@ -18,9 +20,18 @@ class SiteController {
     player(req, res) {
         res.render('player');
     }
+
     //  [GET] /
-    intro(req, res) {
-        res.render('intro');
+    intro(req, res, next) {
+        Song.find({})
+            .then((songs) => {
+                res.render('intro', {
+                    songs: multipleMongooseToObj(songs),
+                });
+            })
+            .catch((error) => {
+                next(error);
+            });
     }
 }
 

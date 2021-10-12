@@ -1,0 +1,43 @@
+<div class='m-4'>
+    <h2>Add new car</h2>
+    <div class='mt-4'>
+        <form method='POST' action='/cars/store'>
+            <div class='form-group'>
+                <label for='name'>Name</label>
+                <input name='name' type='text' class='form-control' id='name' />
+            </div>
+            <div class='form-group'>
+                <label for='desc'>Descriptions</label>
+                <input name='desc' type='text' class='form-control' id='desc' />
+            </div>
+            <div class='form-group'>
+                <label for='details'>Details</label>
+                <input
+                    name='details'
+                    type='text'
+                    class='form-control'
+                    id='details'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='image'>Image</label>
+                <input
+                    name='image'
+                    type='text'
+                    class='form-control'
+                    id='image'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='video'>Video ID</label>
+                <input
+                    name='video'
+                    type='text'
+                    class='form-control'
+                    id='video'
+                />
+            </div>
+            <button type='submit' class='btn btn-primary'>Add</button>
+        </form>
+    </div>
+</div>
