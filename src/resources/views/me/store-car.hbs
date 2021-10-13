@@ -1,0 +1,33 @@
+<div class='mt-4'>
+    <h3>
+        My Cars
+    </h3>
+    <table class='table mt-4'>
+        <thead>
+            <tr>
+                <th scope='col'>#</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Description</th>
+                <th scope='col'>Date Created</th>
+                <th scope='col'>Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each cars}}
+                <tr>
+                    <th scope='row'>{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.desc}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td class='button-list'>
+                        <a
+                            href='/cars/{{this._id}}/edit'
+                            class='btn btn-link'
+                        >Edit</a>
+                        <a href='#' class='btn btn-link'>Remove</a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

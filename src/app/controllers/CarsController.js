@@ -38,6 +38,20 @@ class CarsController {
                 next(error);
             });
     }
+    // [GET] cars/:id/edit
+    edit(req, res, next) {
+        Car.findById(req.params.id)
+            .then((car) => {
+                res.render('cars/edit', { car: mongooseToObj(car) });
+            })
+            .catch(next);
+    }
+    // [PATCH] cars/:id
+    update(req, res, next) {
+        Car.updateOne({ _id: req.params.id }, req.body)
+            .then(res.redirect('/me/stored/cars'))
+            .catch(next);
+    }
 }
 
 module.exports = new CarsController();

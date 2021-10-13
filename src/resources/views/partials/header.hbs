@@ -1,60 +1,54 @@
 <nav class='navbar navbar-expand-lg navbar-dark'>
-    <a class='navbar-brand' href='#'>HUSTAFact</a>
-    <button
-        class='navbar-toggler'
-        type='button'
-        data-toggle='collapse'
-        data-target='#navbarSupportedContent'
-        aria-controls='navbarSupportedContent'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
-    >
-        <span class='navbar-toggler-icon'></span>
-    </button>
 
-    <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-        <ul class='navbar-nav mr-auto'>
-            <li class='nav-item active'>
-                <a class='nav-link' href='#'>Home
-                    <span class='sr-only'>(current)</span></a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link' href='/cars/add'>Add Cars</a>
-            </li>
-            <li class='nav-item dropdown'>
-                <a
-                    class='nav-link dropdown-toggle'
-                    href='#'
-                    id='navbarDropdown'
-                    role='button'
-                    data-toggle='dropdown'
-                    aria-haspopup='true'
-                    aria-expanded='false'
-                >
-                    Dropdown
-                </a>
-                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                    <a class='dropdown-item' href='#'>Action</a>
-                    <a class='dropdown-item' href='#'>Another action</a>
-                    <div class='dropdown-divider'></div>
-                    <a class='dropdown-item' href='#'>Something else here</a>
-                </div>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link disabled' href='#'>Disabled</a>
-            </li>
-        </ul>
-        <form class='form-inline my-2 my-lg-0'>
-            <input
-                class='form-control mr-sm-2'
-                type='search'
-                placeholder='Search'
-                aria-label='Search'
-            />
-            <button
-                class='btn btn-outline-success my-2 my-sm-0'
-                type='submit'
-            >Search</button>
-        </form>
+    <div class='header-container'>
+        <a class='navbar-brand' href='/'>
+            <div class='page-logo'>
+                <img src='/img/logo.png' alt='' />
+            </div>
+        </a>
+        <button
+            class='navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarSupportedContent'
+            aria-controls='navbarSupportedContent'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+        >
+            <span class='navbar-toggler-icon'></span>
+        </button>
+        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul class='navbar-nav ml-auto'>
+                <li class='nav-item dropdown'>
+                    <a
+                        class='nav-link dropdown-toggle'
+                        href='#'
+                        id='navbarDropdown'
+                        role='button'
+                        data-toggle='dropdown'
+                        aria-haspopup='true'
+                        aria-expanded='false'
+                    >
+                        <img
+                            src='https://avatars.githubusercontent.com/u/89578978?s=40&v=4'
+                            alt=''
+                            class='user-avatar'
+                        />
+                        KakashiOfAnbu
+                    </a>
+                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                        <a class='dropdown-item' href='/cars/add'>Add Cars</a>
+                        <div class='dropdown-divider'></div>
+                        <a class='dropdown-item' href='/me/stored/cars'>My Cars</a>
+                        <div class='dropdown-divider'></div>
+                        <a class='dropdown-item' href='/cars'>Cars Collection</a>
+                        <div class='dropdown-divider'></div>
+                        <a class='dropdown-item' href='#'>Đăng Xuất</a>
+
+                    </div>
+                </li>
+
+            </ul>
+        </div>
     </div>
 </nav>

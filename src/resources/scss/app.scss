@@ -1,12 +1,5 @@
 @import 'variables';
 @import 'musicPlayer';
-.test {
-    font-size: 1rem;
-    background-color: #fff;
-    width: 50px;
-    height: 50px;
-    border-radius: 100rem;
-}
 body {
     background-image: $main-background-image;
     background-repeat: no-repeat;
@@ -17,9 +10,6 @@ body {
     box-sizing: border-box;
     font-family: Montserrat, sans-serif;
     color: $main-color;
-}
-.grid-item {
-    margin: 40px;
 }
 .card-body {
     height: 240px;
@@ -42,7 +32,8 @@ body {
     );
 }
 .form-group {
-    input {
+    input,
+    textarea {
         width: 50%;
     }
 }
@@ -61,4 +52,40 @@ body {
             width: 100%;
         }
     }
+}
+
+.page-logo {
+    height: 36px;
+    border: 10px 10px 10px white;
+    > img {
+        transform: scale(220%);
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.header-container {
+    margin: 0 28px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .dropdown {
+        .dropdown-menu {
+            transform: translateY(-8px);
+            width: 100%;
+        }
+    }
+    .nav-link {
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 100rem;
+            transform: scale(120%);
+            margin-right: 4px;
+        }
+    }
+}
+
+.button-list {
+    display: flex;
 }

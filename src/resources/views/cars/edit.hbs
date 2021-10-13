@@ -1,0 +1,58 @@
+<div class='m-4'>
+    <h2>Edit car</h2>
+    <div class='mt-4'>
+        <form method='POST' action='/cars/{{car._id}}?_method=PATCH'>
+            <div class='form-group'>
+                <label for='name'>Name</label>
+                <input
+                    value='{{car.name}}'
+                    name='name'
+                    type='text'
+                    class='form-control'
+                    id='name'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='desc'>Descriptions</label>
+                <input
+                    value='{{car.desc}}'
+                    name='desc'
+                    type='text'
+                    class='form-control'
+                    id='desc'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='details'>Details</label>
+                <textarea
+                    value='{{car.details}}'
+                    name='details'
+                    type='text'
+                    class='form-control'
+                    id='details'
+                >{{car.details}}</textarea>
+            </div>
+            <div class='form-group'>
+                <label for='image'>Image</label>
+                <input
+                    value='{{car.image}}'
+                    name='image'
+                    type='text'
+                    class='form-control'
+                    id='image'
+                />
+            </div>
+            <div class='form-group'>
+                <label for='video'>Video ID</label>
+                <input
+                    value='{{car.video}}'
+                    name='video'
+                    type='text'
+                    class='form-control'
+                    id='video'
+                />
+            </div>
+            <button type='submit' class='btn btn-primary'>Save changes</button>
+        </form>
+    </div>
+</div>
