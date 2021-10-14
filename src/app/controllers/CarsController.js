@@ -52,6 +52,15 @@ class CarsController {
             .then(res.redirect('/me/stored/cars'))
             .catch(next);
     }
+
+    //[DELETE] cars/:id
+    delete(req, res, next) {
+        Car.deleteOne({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back');
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new CarsController();

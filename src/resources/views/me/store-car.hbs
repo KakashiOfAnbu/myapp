@@ -24,10 +24,71 @@
                             href='/cars/{{this._id}}/edit'
                             class='btn btn-link'
                         >Edit</a>
-                        <a href='#' class='btn btn-link'>Remove</a>
+                        <a
+                            href='#'
+                            type='button'
+                            class='btn btn-link'
+                            data-toggle='modal'
+                            data-target='#deleteModal'
+                            data-id='{{this._id}}'
+                        >Remove</a>
                     </td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
 </div>
+
+<!-- Modal -->
+<div
+    class='modal fade'
+    id='deleteModal'
+    tabindex='-1'
+    role='dialog'
+    aria-labelledby='exampleModalLabel'
+    aria-hidden='true'
+>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Delete car</h5>
+                <button
+                    type='button'
+                    class='close'
+                    data-dismiss='modal'
+                    aria-label='Close'
+                >
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                Are you sure you want to delete this car ?
+            </div>
+            <div class='modal-footer'>
+                <button
+                    id='btn-delete-car'
+                    type='button'
+                    class='btn btn-primary btn-danger'
+                >Delete Car</button>
+                <button
+                    type='button'
+                    class='btn btn-secondary'
+                    data-dismiss='modal'
+                >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{! DELETE Form }}
+<form name='deleteCarForm' method='POST'></form>
+
+<script>
+    var carID; var deleteForm = document.forms['deleteCarForm'];
+    document.addEventListener("DOMContentLoaded", ()=>{
+    $('#deleteModal').on('show.bs.modal', (event)=>{ var button =
+    $(event.relatedTarget); carID = button.data('id');})}); const btnDeleteCar =
+    document.querySelector('#btn-delete-car'); btnDeleteCar.onclick = ()=>{
+    deleteForm.action = `/cars/${carID}/?_method=DELETE`; deleteForm.submit() }
+
+</script>
