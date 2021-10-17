@@ -1,15 +1,15 @@
 <div class='mt-4'>
     <h3>
-        My Cars
+        Deleted Cars
     </h3>
-    <a href='/me/trash/cars'>Deleted Cars</a>
+    <a href='/me/stored/cars'>My Cars</a>
     <table class='table mt-4'>
         <thead>
             <tr>
                 <th scope='col'>#</th>
                 <th scope='col'>Name</th>
                 <th scope='col'>Description</th>
-                <th scope='col'>Date Created</th>
+                <th scope='col'>Date Deleted</th>
                 <th scope='col'>Functions</th>
             </tr>
         </thead>
@@ -19,12 +19,13 @@
                     <th scope='row'>{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.desc}}</td>
-                    <td>{{this.createdAt}}</td>
+                    <td>{{this.deletedAt}}</td>
                     <td class='button-list'>
                         <a
-                            href='/cars/{{this._id}}/edit'
-                            class='btn btn-link'
-                        >Edit</a>
+                            href=''
+                            class='btn btn-link btn-restore'
+                            data-id='{{this._id}}'
+                        >Restore</a>
                         <a
                             href='#'
                             type='button'
@@ -32,15 +33,13 @@
                             data-toggle='modal'
                             data-target='#deleteModal'
                             data-id='{{this._id}}'
-                        >Remove</a>
+                        >Remove Permanently</a>
                     </td>
                 </tr>
             {{else}}
                 <tr>
                     <td colspan='5' class='text-center'>
-                        <span>You have no cars you broke ass Bitch. </span>
-                        <a href='/cars/add'>Add Cars.</a>
-
+                        <span>There are no deleted cars</span>
                     </td>
                 </tr>
             {{/each}}
@@ -71,14 +70,15 @@
                 </button>
             </div>
             <div class='modal-body'>
-                Are you sure you want to delete this car ?
+                Are you sure you want to delete this car permanently? This
+                action cannot be undone.
             </div>
             <div class='modal-footer'>
                 <button
                     id='btn-delete-car'
                     type='button'
                     class='btn btn-primary btn-danger'
-                >Delete Car</button>
+                >Delete Car Permanently</button>
                 <button
                     type='button'
                     class='btn btn-secondary'
@@ -90,14 +90,19 @@
 </div>
 
 {{! DELETE Form }}
-<form name='deleteCarForm' method='POST'></form>
+<form name='delete-car-form' method='POST'></form>
+<form name='restore-car-form' method='POST'></form>
 
 <script>
-    var carID; var deleteForm = document.forms['deleteCarForm'];
-    document.addEventListener("DOMContentLoaded", ()=>{
+    var carID; var deleteForm = document.forms['delete-car-form'];var
+    restoreForm = document.forms['restore-car-form'];var restoreBtns;
+    document.addEventListener("DOMContentLoaded", ()=>{restoreBtns =
+    $('.btn-restore');restoreBtns.click((e)=>{e.preventDefault();var restoreId =
+    e.target.getAttribute('data-id');restoreForm.action =
+    `/cars/${restoreId}/restore?_method=PATCH`; restoreForm.submit();});
     $('#deleteModal').on('show.bs.modal', (event)=>{ var button =
     $(event.relatedTarget); carID = button.data('id');})}); const btnDeleteCar =
     document.querySelector('#btn-delete-car'); btnDeleteCar.onclick = ()=>{
-    deleteForm.action = `/cars/${carID}/?_method=DELETE`; deleteForm.submit() }
-
+    deleteForm.action = `/cars/${carID}/permanent?_method=DELETE`;
+    deleteForm.submit() };
 </script>

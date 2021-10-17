@@ -12,6 +12,16 @@ class MeController {
             })
             .catch(next);
     }
+
+    trashView(req, res, next) {
+        Car.findDeleted({})
+            .then((cars) => {
+                res.render('me/trash', {
+                    cars: multipleMongooseToObj(cars),
+                });
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new MeController();

@@ -23,7 +23,7 @@ class CarsController {
         const car = new Car(req.body);
         car.save()
             .then(() => {
-                res.redirect('/cars');
+                res.redirect('/me/stored/cars');
             })
             .catch((error) => {});
     }
@@ -46,15 +46,33 @@ class CarsController {
             })
             .catch(next);
     }
-    // [PATCH] cars/:id
+    // [PUT] cars/:id
     update(req, res, next) {
         Car.updateOne({ _id: req.params.id }, req.body)
             .then(res.redirect('/me/stored/cars'))
             .catch(next);
     }
 
+    // [PATCH] cars/:id/restore
+
+    restore(req, res, next) {
+        Car.restore({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back');
+            })
+            .catch(next);
+    }
+
     //[DELETE] cars/:id
     delete(req, res, next) {
+        Car.deleteById(req.params.id)
+            .then(() => {
+                res.redirect('back');
+            })
+            .catch(next);
+    }
+    // [DELETE] cars/:id/permanent
+    deletePermanently(req, res, next) {
         Car.deleteOne({ _id: req.params.id })
             .then(() => {
                 res.redirect('back');
