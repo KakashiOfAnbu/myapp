@@ -79,6 +79,21 @@ class CarsController {
             })
             .catch(next);
     }
+    // [POST] cars/handle-form-actions
+
+    handleFormActions(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Car.deleteById(req.body.carIds)
+                    .then(() => {
+                        res.redirect('back');
+                    })
+                    .catch(next);
+                break;
+            default:
+                res.json({ message: 'ERROR 404! ACTION NOT FOUND' });
+        }
+    }
 }
 
 module.exports = new CarsController();

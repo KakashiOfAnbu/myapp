@@ -1,21 +1,57 @@
-<div class='mt-4'>
+<form
+    name='main-form'
+    method='POST'
+    action='/cars/handle-form-actions'
+    class='mt-4'
+>
     <h3>
         My Cars
     </h3>
-    <a href='/me/trash/cars'>Deleted Cars</a>
+    {{#if deletedCount}}
+        <a href='/me/trash/cars'>Deleted Cars. ( {{deletedCount}} )</a>
+    {{/if}}
+    <div class='mt-4 d-flex align-items-center'>
+        <div class='form-check'>
+            <input type='checkbox' class='form-check-input' id='checkbox-all' />
+            <label class='form-check-label' for='checkbox-all'>Select All</label>
+        </div>
+        <select
+            class='form-control form-control-sm form-control-action-select'
+            name='action'
+            required
+        >
+            <option value=''>-- Select Action --</option>
+            <option value='delete'>Delete</option>
+        </select>
+        <button
+            class='btn btn-primary btn-sm disabled'
+            id='execute-btn'
+        >Submit</button>
+    </div>
     <table class='table mt-4'>
         <thead>
             <tr>
+                <th scope='col'>Select</th>
                 <th scope='col'>#</th>
                 <th scope='col'>Name</th>
                 <th scope='col'>Description</th>
                 <th scope='col'>Date Created</th>
-                <th scope='col'>Functions</th>
+                <th scope='col' colspan='2'>Functions</th>
             </tr>
         </thead>
         <tbody>
             {{#each cars}}
                 <tr>
+                    <td class='checkbox-container'>
+                        <div class='form-check'>
+                            <input
+                                value='{{this._id}}'
+                                name='carIds[]'
+                                type='checkbox'
+                                class='form-check-input'
+                            />
+                        </div>
+                    </td>
                     <th scope='row'>{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.desc}}</td>
@@ -40,13 +76,12 @@
                     <td colspan='5' class='text-center'>
                         <span>You have no cars you broke ass Bitch. </span>
                         <a href='/cars/add'>Add Cars.</a>
-
                     </td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
-</div>
+</form>
 
 <!-- Modal -->
 <div
@@ -92,12 +127,5 @@
 {{! DELETE Form }}
 <form name='deleteCarForm' method='POST'></form>
 
-<script>
-    var carID; var deleteForm = document.forms['deleteCarForm'];
-    document.addEventListener("DOMContentLoaded", ()=>{
-    $('#deleteModal').on('show.bs.modal', (event)=>{ var button =
-    $(event.relatedTarget); carID = button.data('id');})}); const btnDeleteCar =
-    document.querySelector('#btn-delete-car'); btnDeleteCar.onclick = ()=>{
-    deleteForm.action = `/cars/${carID}/?_method=DELETE`; deleteForm.submit() }
-
+<script src='/js/myStore.js'>
 </script>

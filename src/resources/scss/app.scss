@@ -97,3 +97,12 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
+
+.checkbox-container input {
+    transform: translateX(1rem);
+}
+.form-control-action-select {
+    width: 10rem;
+    margin-left: 40px;
+    margin-right: 40px;
+}

@@ -4,9 +4,10 @@ const { mongooseToObj } = require('../../utils/mongoose');
 class MeController {
     // [GET] /me/strored/cars
     storeCars(req, res, next) {
-        Car.find({})
-            .then((cars) => {
+        Promise.all([Car.countDocumentsDeleted(), Car.find({})])
+            .then(([deletedCount, cars]) => {
                 res.render('me/store-car', {
+                    deletedCount,
                     cars: multipleMongooseToObj(cars),
                 });
             })
