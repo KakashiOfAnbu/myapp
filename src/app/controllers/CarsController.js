@@ -90,6 +90,29 @@ class CarsController {
                     })
                     .catch(next);
                 break;
+            case 'restore':
+                Promise.all(
+                    req.body.carIds.map((carId) => {
+                        return Car.restore({ _id: carId });
+                    })
+                )
+                    .then(() => {
+                        res.redirect('back');
+                    })
+                    .catch(next);
+                break;
+            case 'permaDelete':
+                Promise.all(
+                    req.body.carIds.map((carId) => {
+                        return Car.deleteOne({ _id: carId });
+                    })
+                )
+                    .then(() => {
+                        res.redirect('back');
+                    })
+                    .catch(next);
+
+                break;
             default:
                 res.json({ message: 'ERROR 404! ACTION NOT FOUND' });
         }

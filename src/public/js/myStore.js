@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
         var button = $(event.relatedTarget);
         carID = button.data('id');
     });
+    const mainForm = $('form[name="main-form"]');
     const checkboxAll = $('#checkbox-all');
-    const mainForm = document.forms['main-form'];
     const checkboxItems = $('input[name="carIds[]"]');
     const executeBtn = $('#execute-btn');
     checkboxAll.change(function () {
@@ -20,16 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderExecuteBtn();
     });
 
-    executeBtn.on('submit', function (e) {
-        var isSubmitable = !$(this).hasClass('disabled');
-        if (!isSubmitable) {
-            e.preventDefault();
-        }
-    });
     function renderExecuteBtn() {
         if ($('input[name="carIds[]"]:checked').length > 0) {
-            executeBtn.removeClass('disabled');
-        } else executeBtn.addClass('disabled');
+            executeBtn.attr('disabled', false);
+        } else executeBtn.attr('disabled', true);
     }
 });
 const btnDeleteCar = document.querySelector('#btn-delete-car');

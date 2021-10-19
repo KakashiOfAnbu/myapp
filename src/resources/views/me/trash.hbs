@@ -1,30 +1,65 @@
-<div class='mt-4'>
+<form
+    name='main-form'
+    method='POST'
+    action='/cars/handle-form-actions'
+    class='mt-4'
+>
     <h3>
         Deleted Cars
     </h3>
-    <a href='/me/stored/cars'>My Cars</a>
+    <div class='mt-4 d-flex align-items-center'>
+        <div class='form-check'>
+            <input type='checkbox' class='form-check-input' id='checkbox-all' />
+            <label class='form-check-label' for='checkbox-all'>Select All</label>
+        </div>
+        <select
+            class='form-control form-control-sm form-control-action-select'
+            name='action'
+            required
+        >
+            <option value=''>-- Select Action --</option>
+            <option value='restore'>Restore</option>
+            <option value='permaDelete'>Delete Permanently</option>
+        </select>
+        <button
+            class='btn btn-primary btn-sm'
+            id='execute-btn'
+            disabled
+        >Submit</button>
+    </div>
     <table class='table mt-4'>
         <thead>
             <tr>
+                <th scope='col'>Select</th>
                 <th scope='col'>#</th>
                 <th scope='col'>Name</th>
                 <th scope='col'>Description</th>
                 <th scope='col'>Date Deleted</th>
-                <th scope='col'>Functions</th>
+                <th scope='col' colspan='2'>Functions</th>
             </tr>
         </thead>
         <tbody>
             {{#each cars}}
                 <tr>
+                    <td class='checkbox-container'>
+                        <div class='form-check'>
+                            <input
+                                value='{{this._id}}'
+                                name='carIds[]'
+                                type='checkbox'
+                                class='form-check-input'
+                            />
+                        </div>
+                    </td>
                     <th scope='row'>{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.desc}}</td>
                     <td>{{this.deletedAt}}</td>
                     <td class='button-list'>
                         <a
+                            data-id='{{this._id}}'
                             href=''
                             class='btn btn-link btn-restore'
-                            data-id='{{this._id}}'
                         >Restore</a>
                         <a
                             href='#'
@@ -33,19 +68,19 @@
                             data-toggle='modal'
                             data-target='#deleteModal'
                             data-id='{{this._id}}'
-                        >Remove Permanently</a>
+                        >Permanently Remove</a>
                     </td>
                 </tr>
             {{else}}
                 <tr>
                     <td colspan='5' class='text-center'>
-                        <span>There are no deleted cars</span>
+                        <span>There is no deleted car.</span>
                     </td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
-</div>
+</form>
 
 <!-- Modal -->
 <div
