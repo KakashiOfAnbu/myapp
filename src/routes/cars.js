@@ -3,6 +3,7 @@ const router = express.Router();
 const carsController = require('../app/controllers/CarsController');
 
 router.get('/add', carsController.add);
+router.post('/bulk-store', carsController.bulkStore);
 router.post('/store', carsController.store);
 router.post('/handle-form-actions', carsController.handleFormActions);
 router.get('/:id/edit', carsController.edit);

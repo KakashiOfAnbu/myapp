@@ -8,7 +8,9 @@
         My Cars
     </h3>
     {{#if deletedCount}}
-        <a href='/me/trash/cars'>Deleted Cars. ( {{deletedCount}} )</a>
+        <a href='/me/trash/cars'>Deleted Cars. (
+            {{deletedCount}}
+            )</a>
     {{/if}}
     <div class='mt-4 d-flex align-items-center'>
         <div class='form-check'>
@@ -33,10 +35,18 @@
         <thead>
             <tr>
                 <th scope='col'>Select</th>
-                <th scope='col'>#</th>
-                <th scope='col'>Name</th>
-                <th scope='col'>Description</th>
-                <th scope='col'>Date Created</th>
+                <th scope='col' class='id-col'>ID{{{sortable '_id' _sort}}}</th>
+                <th scope='col'>
+                    Name
+                    {{{sortable 'name' _sort}}}
+                </th>
+                <th scope='col'>Description
+
+                    {{{sortable 'desc' _sort}}}
+                </th>
+                <th scope='col'>Date Created
+                    {{{sortable 'createdAt' _sort}}}
+                </th>
                 <th scope='col' colspan='2'>Functions</th>
             </tr>
         </thead>
@@ -53,7 +63,7 @@
                             />
                         </div>
                     </td>
-                    <th scope='row'>{{sum @index 1}}</th>
+                    <th scope='row' class='text-center'>{{this._id}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.desc}}</td>
                     <td>{{this.createdAt}}</td>

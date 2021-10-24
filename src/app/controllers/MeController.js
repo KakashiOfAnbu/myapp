@@ -4,7 +4,13 @@ const { mongooseToObj } = require('../../utils/mongoose');
 class MeController {
     // [GET] /me/strored/cars
     storeCars(req, res, next) {
-        Promise.all([Car.countDocumentsDeleted(), Car.find({})])
+        let findCars = Car.find({});
+        if (req.query.hasOwnProperty('_sort')) {
+            findCars = Car.find({}).sort({
+                [req.query.column]: req.query.type,
+            });
+        }
+        Promise.all([Car.countDocumentsDeleted(), findCars])
             .then(([deletedCount, cars]) => {
                 res.render('me/store-car', {
                     deletedCount,

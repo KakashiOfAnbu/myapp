@@ -1,4 +1,5 @@
 const Car = require('../models/Car.js');
+const faker = require('faker');
 const { multipleMongooseToObj } = require('../../utils/mongoose');
 const { mongooseToObj } = require('../../utils/mongoose');
 class CarsController {
@@ -25,7 +26,36 @@ class CarsController {
             .then(() => {
                 res.redirect('/me/stored/cars');
             })
-            .catch((error) => {});
+            .catch(next);
+    }
+
+    // [POST ] multiple post /cars/bulk-store
+
+    bulkStore(req, res, next) {
+        const items = [];
+        let random;
+        for (let i = 0; i < 5; i++) {
+            random = Math.floor(Math.random() * 2);
+            items[i] = new Car({
+                name: faker.commerce.productName(),
+                desc: faker.lorem.sentence(),
+                details: faker.lorem.paragraph(),
+                image:
+                    random == 0
+                        ? 'https://images.unsplash.com/photo-1542362567-b07e54358753?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80'
+                        : 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80',
+                video: 'PkkV1vLHUvQ',
+            });
+        }
+        Promise.all(
+            items.map((item) => {
+                return item.save();
+            })
+        )
+            .then(() => {
+                res.redirect('/cars');
+            })
+            .catch(next);
     }
 
     // [GET] /cars/:slug

@@ -3,6 +3,7 @@
 body {
     background-image: $main-background-image;
     background-repeat: no-repeat;
+    min-height: 1000px;
 }
 * {
     padding: 0;
@@ -12,7 +13,7 @@ body {
     color: $main-color;
 }
 .card-body {
-    height: 200px;
+    height: 15rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -105,4 +106,8 @@ body {
     width: 10rem;
     margin-left: 40px;
     margin-right: 40px;
+}
+
+.id-col {
+    width: 4rem;
 }

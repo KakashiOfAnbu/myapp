@@ -7,11 +7,14 @@ const port = 3000;
 const route = require('./routes');
 const db = require('./config/db');
 const methodOverride = require('method-override');
+const sortMiddleware = require('./app/middlewares/SortMiddleware');
 
 // Connect to DB
 
 db.connect();
+// Middlewares
 
+app.use(sortMiddleware); //Custom middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
     express.urlencoded({
@@ -20,6 +23,7 @@ app.use(
 );
 app.use(express.json());
 app.use(methodOverride('_method'));
+
 // Routing
 
 route(app);
@@ -33,6 +37,21 @@ app.engine(
         helpers: {
             sum: (a, b) => {
                 return a + b;
+            },
+            sortable: (field, sort) => {
+                const currentField = field == sort.name ? sort.type : 'default';
+                const types = {
+                    default: 'oi oi-elevator ml-1',
+                    asc: 'ml-1 oi oi-sort-ascending',
+                    desc: 'ml-1 oi oi-sort-descending',
+                };
+                const type = types[currentField];
+
+                return `<a href='?_sort&column=${field}&type=${
+                    currentField == 'asc' ? 'desc' : 'asc'
+                }'><span
+                class='${type}' 
+            ></span></a>`;
             },
         },
     })
