@@ -6,14 +6,16 @@ const path = require('path');
 const port = 3000;
 const route = require('./routes');
 const db = require('./config/db');
+const Car = require('./app/models/Car.js');
 const methodOverride = require('method-override');
 const sortMiddleware = require('./app/middlewares/SortMiddleware');
+const paginatedResults = require('./app/middlewares/PaginatedResults');
 
 // Connect to DB
 
 db.connect();
 // Middlewares
-
+app.use(paginatedResults);
 app.use(sortMiddleware); //Custom middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(

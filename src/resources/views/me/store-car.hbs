@@ -34,6 +34,7 @@
     <table class='table mt-4'>
         <thead>
             <tr>
+                <th scope='col'>#</th>
                 <th scope='col'>Select</th>
                 <th scope='col' class='id-col'>ID{{{sortable '_id' _sort}}}</th>
                 <th scope='col'>
@@ -53,6 +54,7 @@
         <tbody>
             {{#each cars}}
                 <tr>
+                    <td>{{sum @index 1}}</td>
                     <td class='checkbox-container'>
                         <div class='form-check'>
                             <input
@@ -63,6 +65,7 @@
                             />
                         </div>
                     </td>
+
                     <th scope='row' class='text-center'>{{this._id}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.desc}}</td>
@@ -93,6 +96,32 @@
         </tbody>
     </table>
 </form>
+<nav aria-label='...'>
+    <ul class='pagination justify-content-center'>
+        <li class='page-item disabled'>
+            <span class='page-link'>Previous</span>
+        </li>
+        <li class='page-item'><a
+                class='page-link'
+                data-value='1'
+                href='#'
+            >1</a></li>
+        <li class='page-item active'>
+            <span class='page-link' data-value='2'>2<span
+                    class='sr-only'
+                >(current)</span>
+            </span>
+        </li>
+        <li class='page-item'><a
+                class='page-link'
+                data-value='3'
+                href='#'
+            >3</a></li>
+        <li class='page-item'>
+            <a class='page-link' href='#'>Next</a>
+        </li>
+    </ul>
+</nav>
 
 <!-- Modal -->
 <div
@@ -137,6 +166,6 @@
 
 {{! DELETE Form }}
 <form name='deleteCarForm' method='POST'></form>
-
+<form name='pageSubmit' method='GET'></form>
 <script src='/js/myStore.js'>
 </script>
